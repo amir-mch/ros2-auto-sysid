@@ -1,0 +1,25 @@
+# System Identification Optimization Hyperparameters
+optimization:
+  integrator:
+    type: "rk4"
+    hold_mode: "linear"        # 'linear' (FOH) or 'zoh'
+    n_substeps: 2              # Internal sub-steps per dt
+    
+  loss:
+    type: "huber"              # 'huber' or 'mse'
+    huber_delta: 0.8           # Huber transition threshold
+    reg_weight: 0.005          # Weight on prior parameter regularization
+    
+    # State trajectory weights: [p_x, p_y, psi, v_x, v_y, omega_z]
+    state_weights: [1.0, 1.0, 2.0, 1.0, 1.5, 1.0]
+    
+  adam:
+    epochs: 120
+    learning_rate: 0.06
+    grad_clip_norm: 10.0
+    
+  lbfgs:
+    epochs: 25
+    learning_rate: 0.4
+    history_size: 15
+    line_search: "strong_wolfe"

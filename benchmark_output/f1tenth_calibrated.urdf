@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot name="f1tenth_vehicle">
+  <link name="base_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="4.29818" />
+      <inertia ixx="0.0150" ixy="0.0" ixz="0.0" iyy="0.0350" iyz="0.0" izz="0.073043" />
+    </inertial>
+    <visual>
+      <geometry>
+        <box size="0.50 0.20 0.12" />
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.50 0.20 0.12" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="steering_link" />
+  <joint name="steering_joint" type="revolute">
+    <parent link="base_link" />
+    <child link="steering_link" />
+    <origin xyz="0.16 0 0.05" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="-0.4" upper="0.4" effort="10.0" velocity="8.0" />
+    <dynamics damping="0.027849" friction="0.005000" />
+  </joint>
+</robot>

@@ -1,0 +1,23 @@
+# Excitation Signal and Safety Monitor Configuration
+sysid_excitation_node:
+  ros__parameters:
+    sampling_dt: 0.02          # 50 Hz control loop [s]
+    duration: 12.0             # Maneuver duration [s]
+    output_path: "data/excitation_run_01.npz"
+    
+    maneuver:
+      type: "slalom"           # Options: 'slalom', 'chirp', 'step'
+      base_velocity: 2.2       # Nominal forward speed [m/s]
+      velocity_variation: 0.6  # Speed fluctuation amplitude [m/s]
+      steering_max: 0.30       # Peak steering angle [rad] (~17 deg)
+      chirp_f0: 0.15           # Initial sweep frequency [Hz]
+      chirp_f1: 1.80           # Maximum sweep frequency [Hz]
+      
+    safety:
+      x_min: -8.0              # Geofence boundary [m]
+      x_max: 8.0
+      y_min: -8.0
+      y_max: 8.0
+      max_yaw_rate: 5.5        # Max allowable yaw rate [rad/s]
+      max_lateral_accel: 11.0  # Max allowable lateral acceleration [m/s^2]
+      max_speed: 5.0           # Max forward speed [m/s]
